@@ -1,5 +1,5 @@
 {
-  "name": "resultjs",
+  "name": "@fatmatto/resultjs",
   "version": "1.0.0",
   "description": "Result monad for Javascript",
   "main": "index.js",
