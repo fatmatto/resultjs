@@ -73,12 +73,25 @@ class Result {
 /**
  * Wraps an async function, returning errors and results in a nice way
  * @param {Function} fn
- * @returns {Function} An async function that applies params to the given function and returns a Result instance
+ * @returns {Promise<Result>} The promise of a result (very romantic!)
  */
-
 async function wrap (fn) {
   try {
     const result = await fn()
+    return Result.from(result)
+  } catch (error) {
+    return Result.from(error)
+  }
+}
+
+/**
+ * Wraps a sync function, returning errors and results in a nice way
+ * @param {Function} fn
+ * @returns {Function} An async function that applies params to the given function and returns a Result instance
+ */
+function wrapSync (fn) {
+  try {
+    const result = fn()
     return Result.from(result)
   } catch (error) {
     return Result.from(error)
@@ -89,4 +102,4 @@ function ok (v) { return new Result(null, v) }
 
 function err (e) { return new Result(e) }
 
-module.exports = { Result, wrap, ok, err }
+module.exports = { Result, wrap, wrapSync, ok, err }
