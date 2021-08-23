@@ -33,7 +33,7 @@ git add CHANGELOG.md;
 
 git commit -m "Release $version"
 
-git push origin master;
+git push origin main;
 
 git tag ${version} ;
 
