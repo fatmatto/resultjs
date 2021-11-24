@@ -6,7 +6,7 @@ Convenient way to handle functions that might return errors without throwing. He
 
 ```javascript
 
-const {wrap} = require('@fatmatto/resultjs')
+const {wrap, wrapSync} = require('@fatmatto/resultjs')
 
 // Wrap an async function that might throw
 const wrapped = wrap(params => mightFailAsync(params))
@@ -49,13 +49,18 @@ if (result.isError()) {
   // handle error
 }
 
+```
+
+
+### Shortcuts
+
+```javascript
+const {ok,err} = require('@fatmatto/resultjs')
+
 // Shortcut for new Result(null,v)
 const result = ok(imSureThisIsAGoodValue)
 
 // Shortcut for new Result(error,null)
 const result = err(error)
-
-
 ```
-
 
