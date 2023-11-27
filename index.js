@@ -32,6 +32,22 @@ class Result {
     }
   }
 
+    /**
+   * Returns the actual value or runs the callback
+   * @param {Function} callback
+   * @returns
+   */
+  unwrapOrElse (fn) {
+    if (typeof fn !== 'function') {
+      throw new Error('unwrapOrElse expects a function as parameter')
+    }
+    if (this.error) {
+      return fn()
+    } else {
+      return this.value
+    }
+  }
+
   /**
    * Returns true if result has a value
    * @returns {Boolean}
